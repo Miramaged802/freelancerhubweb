@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaUsers,
@@ -7,7 +7,6 @@ import {
   FaChartBar,
   FaExclamationTriangle,
   FaBan,
-  FaCheck,
   FaEye,
   FaEdit,
   FaTrash,
@@ -24,10 +23,10 @@ const AdminDashboard = () => {
   const [activeTab, setActiveTab] = useState("overview");
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Admin credentials - In production, this should be secured properly
+  // Admin credentials - should match Login.jsx
   const ADMIN_CREDENTIALS = {
-    username: "FreelanceHub_Admin_2024",
-    password: "SecureAdmin@123$"
+    email: "FreelanceHub_Admin_2024@gmail.com",
+    password: "SecureAdmin@123$",
   };
 
   // Sample admin data
@@ -39,13 +38,13 @@ const AdminDashboard = () => {
     activeProjects: 89,
     completedProjects: 253,
     disputeResolution: 12,
-    systemUptime: "99.9%"
+    systemUptime: "99.9%",
   };
 
   const recentUsers = [
     {
       id: 1,
-      name: "Ahmed Hassan / أحمد حسن",
+      name: "Ahmed Hassan",
       email: "ahmed@example.com",
       role: "Client",
       status: "Active",
@@ -54,7 +53,7 @@ const AdminDashboard = () => {
     },
     {
       id: 2,
-      name: "Sarah Wilson / سارة ويلسون",
+      name: "Sarah Wilson",
       email: "sarah@example.com",
       role: "Freelancer",
       status: "Active",
@@ -63,7 +62,7 @@ const AdminDashboard = () => {
     },
     {
       id: 3,
-      name: "Omar Al-Rashid / عمر الراشد",
+      name: "Omar Al-Rashid",
       email: "omar@example.com",
       role: "Client",
       status: "Suspended",
@@ -97,19 +96,19 @@ const AdminDashboard = () => {
     {
       id: 1,
       type: "warning",
-      message: "High server load detected / حمولة خادم عالية مكتشفة",
+      message: "High server load detected",
       time: "5 minutes ago",
     },
     {
       id: 2,
       type: "info",
-      message: "New user registration spike / زيادة في تسجيل المستخدمين الجدد",
+      message: "New user registration spike",
       time: "1 hour ago",
     },
     {
       id: 3,
       type: "error",
-      message: "Payment gateway timeout / انقطاع بوابة الدفع",
+      message: "Payment gateway timeout",
       time: "2 hours ago",
     },
   ];
@@ -123,12 +122,12 @@ const AdminDashboard = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     if (
-      loginData.username === ADMIN_CREDENTIALS.username &&
+      loginData.username === ADMIN_CREDENTIALS.email &&
       loginData.password === ADMIN_CREDENTIALS.password
     ) {
       setIsAuthenticated(true);
     } else {
-      alert("Invalid credentials! Please check your username and password. / بيانات غير صحيحة! يرجى التحقق من اسم المستخدم وكلمة المرور.");
+      alert("Invalid credentials! Please check your email and password.");
     }
   };
 
@@ -149,34 +148,43 @@ const AdminDashboard = () => {
         <div className="bg-white rounded-xl shadow-2xl p-8 w-full max-w-md">
           <div className="text-center mb-8">
             <FaUserShield className="text-5xl text-red-600 mx-auto mb-4" />
-            <h1 className="text-3xl font-bold text-gray-800">
-              Admin Access / دخول المدير
-            </h1>
+            <h1 className="text-3xl font-bold text-gray-800">Admin Login</h1>
             <p className="text-gray-600 mt-2">
-              Secure admin portal / بوابة المدير الآمنة
+              FreelanceHub Administrative Portal
             </p>
+            <div className="mt-4 p-3 bg-blue-50 rounded-lg">
+              <p className="text-sm text-blue-800 font-medium">
+                Admin Credentials:
+              </p>
+              <p className="text-sm text-blue-700">
+                Email: FreelanceHub_Admin_2024@gmail.com
+              </p>
+              <p className="text-sm text-blue-700">
+                Password: SecureAdmin@123$
+              </p>
+            </div>
           </div>
 
           <form onSubmit={handleLogin} className="space-y-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Username / اسم المستخدم
+                Admin Email
               </label>
               <input
-                type="text"
+                type="email"
                 value={loginData.username}
                 onChange={(e) =>
                   setLoginData({ ...loginData, username: e.target.value })
                 }
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                placeholder="Enter admin username"
+                placeholder="Enter admin email"
                 required
               />
             </div>
 
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
-                Password / كلمة المرور
+                Admin Password
               </label>
               <input
                 type="password"
@@ -195,13 +203,13 @@ const AdminDashboard = () => {
               className="w-full bg-red-600 text-white py-3 px-6 rounded-lg hover:bg-red-700 transition-all flex items-center justify-center gap-2"
             >
               <FaUserShield />
-              Access Dashboard / دخول لوحة التحكم
+              Access Admin Dashboard
             </button>
           </form>
 
           <div className="mt-6 p-4 bg-gray-50 rounded-lg">
             <p className="text-sm text-gray-600 text-center">
-              Authorized personnel only / للموظفين المخولين فقط
+              Authorized personnel only
             </p>
           </div>
         </div>
@@ -225,10 +233,10 @@ const AdminDashboard = () => {
               <FaUserShield className="text-3xl text-red-600" />
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">
-                  Admin Dashboard / لوحة تحكم المدير
+                  Admin Dashboard
                 </h1>
                 <p className="text-sm text-gray-600">
-                  FreelanceHub Admin Panel / لوحة إدارة فريلانس هب
+                  FreelanceHub Admin Panel
                 </p>
               </div>
             </div>
@@ -237,7 +245,7 @@ const AdminDashboard = () => {
               className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition-all"
             >
               <FaSignOutAlt />
-              Logout / تسجيل خروج
+              Logout
             </button>
           </div>
         </div>
@@ -247,11 +255,19 @@ const AdminDashboard = () => {
         {/* Tabs */}
         <div className="mb-8 flex flex-wrap gap-4">
           {[
-            { id: "overview", label: "Overview / نظرة عامة", icon: FaChartBar },
-            { id: "users", label: "Users / المستخدمون", icon: FaUsers },
-            { id: "contracts", label: "Contracts / العقود", icon: FaFileContract },
-            { id: "payments", label: "Payments / المدفوعات", icon: FaDollarSign },
-            { id: "system", label: "System / النظام", icon: FaCog },
+            { id: "overview", label: "Overview", icon: FaChartBar },
+            { id: "users", label: "Users", icon: FaUsers },
+            {
+              id: "contracts",
+              label: "Contracts",
+              icon: FaFileContract,
+            },
+            {
+              id: "payments",
+              label: "Payments",
+              icon: FaDollarSign,
+            },
+            { id: "system", label: "System", icon: FaCog },
           ].map((tab) => {
             const Icon = tab.icon;
             return (
@@ -279,8 +295,12 @@ const AdminDashboard = () => {
               <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">Total Users / إجمالي المستخدمين</p>
-                    <p className="text-3xl font-bold text-blue-600">{dashboardStats.totalUsers}</p>
+                    <p className="text-sm text-gray-600">
+                      Total Users
+                    </p>
+                    <p className="text-3xl font-bold text-blue-600">
+                      {dashboardStats.totalUsers}
+                    </p>
                   </div>
                   <FaUsers className="text-4xl text-blue-600" />
                 </div>
@@ -289,8 +309,12 @@ const AdminDashboard = () => {
               <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">Total Revenue / إجمالي الإيرادات</p>
-                    <p className="text-3xl font-bold text-green-600">${dashboardStats.totalRevenue.toLocaleString()}</p>
+                    <p className="text-sm text-gray-600">
+                      Total Revenue
+                    </p>
+                    <p className="text-3xl font-bold text-green-600">
+                      ${dashboardStats.totalRevenue.toLocaleString()}
+                    </p>
                   </div>
                   <FaDollarSign className="text-4xl text-green-600" />
                 </div>
@@ -299,8 +323,12 @@ const AdminDashboard = () => {
               <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">Active Projects / المشاريع النشطة</p>
-                    <p className="text-3xl font-bold text-purple-600">{dashboardStats.activeProjects}</p>
+                    <p className="text-sm text-gray-600">
+                      Active Projects
+                    </p>
+                    <p className="text-3xl font-bold text-purple-600">
+                      {dashboardStats.activeProjects}
+                    </p>
                   </div>
                   <FaFileContract className="text-4xl text-purple-600" />
                 </div>
@@ -309,8 +337,12 @@ const AdminDashboard = () => {
               <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-sm text-gray-600">System Uptime / وقت تشغيل النظام</p>
-                    <p className="text-3xl font-bold text-orange-600">{dashboardStats.systemUptime}</p>
+                    <p className="text-sm text-gray-600">
+                      System Uptime
+                    </p>
+                    <p className="text-3xl font-bold text-orange-600">
+                      {dashboardStats.systemUptime}
+                    </p>
                   </div>
                   <FaChartBar className="text-4xl text-orange-600" />
                 </div>
@@ -320,7 +352,7 @@ const AdminDashboard = () => {
             {/* System Alerts */}
             <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
               <h2 className="text-xl font-bold mb-6">
-                System Alerts / تنبيهات النظام
+                System Alerts
               </h2>
               <div className="space-y-4">
                 {systemAlerts.map((alert) => (
@@ -330,8 +362,8 @@ const AdminDashboard = () => {
                       alert.type === "error"
                         ? "bg-red-50 border-l-4 border-red-500"
                         : alert.type === "warning"
-                        ? "bg-yellow-50 border-l-4 border-yellow-500"
-                        : "bg-blue-50 border-l-4 border-blue-500"
+                          ? "bg-yellow-50 border-l-4 border-yellow-500"
+                          : "bg-blue-50 border-l-4 border-blue-500"
                     }`}
                   >
                     <FaExclamationTriangle
@@ -339,8 +371,8 @@ const AdminDashboard = () => {
                         alert.type === "error"
                           ? "text-red-500"
                           : alert.type === "warning"
-                          ? "text-yellow-500"
-                          : "text-blue-500"
+                            ? "text-yellow-500"
+                            : "text-blue-500"
                       }`}
                     />
                     <div className="flex-1">
@@ -360,14 +392,14 @@ const AdminDashboard = () => {
             <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
               <div className="flex justify-between items-center mb-6">
                 <h2 className="text-xl font-bold">
-                  User Management / إدارة المستخدمين
+                  User Management
                 </h2>
                 <div className="flex gap-4">
                   <div className="relative">
                     <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
                     <input
                       type="text"
-                      placeholder="Search users... / البحث عن المستخدمين..."
+                      placeholder="Search users..."
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
@@ -383,12 +415,12 @@ const AdminDashboard = () => {
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3">Name / الاسم</th>
-                      <th className="text-left py-3">Email / البريد</th>
-                      <th className="text-left py-3">Role / الدور</th>
-                      <th className="text-left py-3">Status / الحالة</th>
-                      <th className="text-left py-3">Projects / المشاريع</th>
-                      <th className="text-left py-3">Actions / الإجراءات</th>
+                      <th className="text-left py-3">Name</th>
+                      <th className="text-left py-3">Email</th>
+                      <th className="text-left py-3">Role</th>
+                      <th className="text-left py-3">Status</th>
+                      <th className="text-left py-3">Projects</th>
+                      <th className="text-left py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -436,24 +468,27 @@ const AdminDashboard = () => {
           <motion.div className="space-y-6" {...fadeIn}>
             <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6">
               <h2 className="text-xl font-bold mb-6">
-                Contract Management / إدارة العقود
+                Contract Management
               </h2>
 
               <div className="overflow-x-auto">
                 <table className="w-full">
                   <thead>
                     <tr className="border-b">
-                      <th className="text-left py-3">Project / المشروع</th>
-                      <th className="text-left py-3">Client / العميل</th>
-                      <th className="text-left py-3">Freelancer / المستقل</th>
-                      <th className="text-left py-3">Value / القيمة</th>
-                      <th className="text-left py-3">Status / الحالة</th>
-                      <th className="text-left py-3">Actions / الإجراءات</th>
+                      <th className="text-left py-3">Project</th>
+                      <th className="text-left py-3">Client</th>
+                      <th className="text-left py-3">Freelancer</th>
+                      <th className="text-left py-3">Value</th>
+                      <th className="text-left py-3">Status</th>
+                      <th className="text-left py-3">Actions</th>
                     </tr>
                   </thead>
                   <tbody>
                     {recentContracts.map((contract) => (
-                      <tr key={contract.id} className="border-b hover:bg-gray-50">
+                      <tr
+                        key={contract.id}
+                        className="border-b hover:bg-gray-50"
+                      >
                         <td className="py-4 font-medium">{contract.project}</td>
                         <td className="py-4">{contract.client}</td>
                         <td className="py-4">{contract.freelancer}</td>
@@ -497,4 +532,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard; 
+export default AdminDashboard;

@@ -20,7 +20,55 @@ function Login() {
     try {
       setError("");
 
-      // Get users from localStorage (if any)
+      // Admin credentials - should match AdminDashboard.jsx
+      const ADMIN_CREDENTIALS = {
+        email: "FreelanceHub_Admin_2024@gmail.com",
+        password: "SecureAdmin@123$",
+      };
+
+      // Check if admin credentials
+      if (
+        values.email.toLowerCase().trim() ===
+          ADMIN_CREDENTIALS.email.toLowerCase() &&
+        values.password === ADMIN_CREDENTIALS.password
+      ) {
+        // Admin login
+        localStorage.setItem("currentUser", ADMIN_CREDENTIALS.email);
+
+        const adminUser = {
+          id: "admin",
+          email: ADMIN_CREDENTIALS.email,
+          firstName: "FreelanceHub",
+          lastName: "Admin",
+          role: "admin",
+          isAuthenticated: true,
+          token: `admin-token-${Date.now()}`,
+          lastLogin: new Date().toISOString(),
+        };
+
+        localStorage.setItem("authUser", JSON.stringify(adminUser));
+
+        // Update Redux state for admin
+        dispatch(
+          setCredentials({
+            user: {
+              id: "admin",
+              email: ADMIN_CREDENTIALS.email,
+              firstName: "FreelanceHub",
+              lastName: "Admin",
+              role: "admin",
+            },
+            token: adminUser.token,
+            userType: "admin",
+          })
+        );
+
+        // Navigate to admin dashboard
+        navigate("/admin", { replace: true });
+        return;
+      }
+
+      // Regular user login
       const users = JSON.parse(localStorage.getItem("users") || "[]");
       const user = users.find(
         (u) =>
