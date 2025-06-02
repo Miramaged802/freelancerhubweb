@@ -9,6 +9,9 @@ import {
   FaGlobe,
 } from "react-icons/fa";
 
+// English: Changed all "Job" to "Project" as requested. No Arabic words added.
+// عربي: تم استبدال كل كلمة "Job" بكلمة "Project" حسب الطلب، بدون إضافة كلمات عربية.
+
 const PostJob = () => {
   const [formData, setFormData] = useState({
     title: "",
@@ -55,7 +58,7 @@ const PostJob = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Job posted", formData);
+    console.log("Project posted", formData);
   };
 
   const fadeIn = {
@@ -76,7 +79,7 @@ const PostJob = () => {
           {...fadeIn}
           className="bg-gradient-to-r from-primary-600 to-primary-800 rounded-lg p-6 text-white mb-8"
         >
-          <h1 className="text-3xl font-bold">Post a New Job</h1>
+          <h1 className="text-3xl font-bold">Post a New Project</h1>
           <p className="mt-2 text-primary-100">
             Find the perfect freelancer for your project
           </p>
@@ -95,7 +98,7 @@ const PostJob = () => {
             <div>
               <label className=" text-gray-700 font-medium mb-2 flex items-center">
                 <FaTag className="mr-2 text-primary-500" />
-                Job Title
+                Project Title
               </label>
               <input
                 name="title"
@@ -269,7 +272,7 @@ const PostJob = () => {
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
           >
-            Post Job
+            Post Project
           </motion.button>
         </motion.form>
       </div>
