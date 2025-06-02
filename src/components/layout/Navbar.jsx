@@ -84,7 +84,7 @@ const Navbar = () => {
                   className="text-2xl font-bold text-primary-600"
                   onClick={() => setIsSidebarOpen(false)}
                 >
-                  FreelanceHub
+                  Freelance Flow
                 </Link>
                 <button
                   onClick={() => setIsSidebarOpen(false)}
@@ -206,7 +206,7 @@ const Navbar = () => {
               to="/"
               className="text-3xl font-bold text-primary-600 hover:text-primary-700 transition-colors"
             >
-              FreelanceHub
+              Freelance Flow
             </Link>
 
             <button

@@ -7,7 +7,7 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
-            <h3 className="text-lg font-semibold mb-4 text-white">FreelanceHub</h3>
+            <h3 className="text-lg font-semibold mb-4 text-white">Freelance Flow</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
               Connect with top freelancers and find the perfect talent for your projects.
             </p>
@@ -74,7 +74,7 @@ const Footer = () => {
         
         <div className="border-t dark:border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            © 2024 FreelanceHub. All rights reserved.
+            © 2024 Freelance Flow. All rights reserved.
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-gray-600 dark:text-gray-400 hover:text-primary-light transition-colors">
